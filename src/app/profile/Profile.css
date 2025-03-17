@@ -1,0 +1,18 @@
+.profile-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    background: white;
+    border-radius: var(--radius-size);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    max-width: 500px;
+    gap: 3rem;
+}
+
+
+@media (max-width: 768px) {
+    .profile-card {
+        width: 300px;
+    }
+}

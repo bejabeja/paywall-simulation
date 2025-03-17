@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Paywall Simulation Web Application
 
-## Getting Started
+This project simulates a basic paywall system with subscription options. It is designed to showcase my skills and understanding of both front-end and back-end development, particularly using Next.js and Prisma.
 
-First, run the development server:
+## Table of Contents
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. [Features](#features)
+2. [Technologies Used](#technologies-used)
+3. [Installation](#installation)
+4. [Future Improvements](#future-improvements)
+5. [Useful Information](#useful-information)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **Subscription Model**: Users can choose from three subscription plans to access content.
+- **Basic Login System**: The login system is minimalistic and stores user information in **local storage** for demonstration purposes.
+- **Payment System Simulation**: The goal of the project is to simulate a basic paywall and subscription system. Payment processing is simulated, and no actual transactions occur.
+- **SQLite Database**: The back-end utilizes **SQLite** as the database, with **Prisma** as the ORM to manage data storage and access.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Technologies Used
 
-## Learn More
+- **Next.js**: Framework for building the web application, ensuring both server-side and client-side rendering.
+- **Prisma**: ORM to interact with an SQLite database.
+- **SQLite**: A lightweight relational database used to store user and subscription data.
+- **Local Storage**: For storing user login information and session details.
+- **CSS**: Basic styling to create a simple, functional design.
+- **react-hot-toast**: A library for displaying notifications.
 
-To learn more about Next.js, take a look at the following resources:
+## Installation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To run the project locally, follow these steps:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Clone the repository:
 
-## Deploy on Vercel
+   ```bash
+   git clone https://github.com/bejabeja/paywall-simulation.git
+   cd paywall
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. Install all necessary dependencies:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   ```bash
+   npm install
+   ```
+
+3. Set up the SQLite database:
+
+   ```bash
+   npx prisma migrate dev
+   ```
+
+4. Now you can start the app:
+
+   ```bash
+   npm run dev
+   ```
+
+5. Open the application in your browser:
+
+   [http://localhost:3000](http://localhost:3000)
+
+## Future Improvements
+
+This project is currently a basic simulation. In the future:
+
+- **Real Payment Processing**: Integrate with payment providers (e.g., Stripe) for real transactions.
+- **Authentication and Authorization**: Implement a secure login system with JWT tokens or OAuth for better security and authentication.
+- **User Profile**: Allow users to view and manage their subscription details.
+
+## Useful information
+
+- **Card Number**: A 16-digit card number is required to create a successful transaction. If the card number is shorter, the transaction will still be created, but it will fail.
+
+- If you want to add some data to the database, you can find a file named `seed.js` where you can add data structures, and then execute:
+
+  ```bash
+  npx prisma db seed
+  ```
+
+- If you want to reset database data:
+
+  ```bash
+  npx prisma migrate reset
+  ```
+
+- **Prisma Studio**: To interact with your database, you can open Prisma Studio:
+
+  ```bash
+  npx prisma studio
+  ```
