@@ -34,7 +34,7 @@ To run the project locally, follow these steps:
 
    ```bash
    git clone https://github.com/bejabeja/paywall-simulation.git
-   cd paywall
+   cd paywall-simulation
    ```
 
 2. Install all necessary dependencies:
