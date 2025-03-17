@@ -114,3 +114,37 @@ h2 {
         transform: rotate(360deg);
     }
 }
+
+
+.mainTitle {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: var(--font-poppins), sans-serif;
+}
+
+.subTitle {
+    font-size: 1.25rem;
+    color: var(--secondary-text-color);
+    font-weight: normal;
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-family: var(--font-roboto), sans-serif;
+    line-height: 1.6;
+}
+
+
+
+
+@media (max-width: 600px) {
+    .mainTitle {
+        font-size: 2rem;
+    }
+
+    .subTitle {
+        font-size: 1rem;
+    }
+}

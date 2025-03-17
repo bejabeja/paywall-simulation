@@ -9,7 +9,6 @@ export default function ProcessingPayment() {
   const [paymentComplete, setPaymentComplete] = useState(false);
   const searchParams = useSearchParams();
   const status = searchParams?.get("status");
-  console.log("status", status);
 
   useEffect(() => {
     const timer = setTimeout(() => {

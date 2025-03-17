@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import "./Navbar.css";
 
 export default function Navbar() {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
   const pathName = usePathname();
 
   return (
@@ -30,6 +30,14 @@ export default function Navbar() {
           className={`nav-link ${pathName === "/sign-in" ? "active" : ""}`}
         >
           Sign in
+        </Link>
+      )}
+      {isAuthenticated && user.isSubscribed && (
+        <Link
+          href="/news"
+          className={`nav-link ${pathName === "/news" ? "active" : ""}`}
+        >
+          News
         </Link>
       )}
     </nav>

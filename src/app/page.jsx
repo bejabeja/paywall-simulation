@@ -34,8 +34,8 @@ export default function Home() {
 
   return (
     <section className="container">
-      <h2 className={styles["mainTitle"]}>Choose Your Plan</h2>
-      <h4 className={styles["subTitle"]}>
+      <h2 className="mainTitle">Choose Your Plan</h2>
+      <h4 className="subTitle">
         Tailored to fit every step of your journey. Start your adventure today!
       </h4>
       <div className={styles["plans-grid"]}>
