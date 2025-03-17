@@ -7,7 +7,7 @@ export async function POST(request) {
         const body = await request.json();
         const { userId, selectedPlan, name, email, phone, address, country, cardDetails } = body;
 
-        if (!cardDetails?.number || cardDetails.number.length !== 16) {
+        if (!cardDetails?.number || cardDetails.number === "1111111111111111") {
             await prisma.paymentTransaction.create({
                 data: {
                     userId,

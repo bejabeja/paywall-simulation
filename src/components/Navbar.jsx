@@ -15,6 +15,15 @@ export default function Navbar() {
         Home
       </Link>
 
+      {isAuthenticated && user.isSubscribed && (
+        <Link
+          href="/news"
+          className={`nav-link ${pathName === "/news" ? "active" : ""}`}
+        >
+          News
+        </Link>
+      )}
+      
       {isAuthenticated ? (
         <>
           <Link
@@ -30,14 +39,6 @@ export default function Navbar() {
           className={`nav-link ${pathName === "/sign-in" ? "active" : ""}`}
         >
           Sign in
-        </Link>
-      )}
-      {isAuthenticated && user.isSubscribed && (
-        <Link
-          href="/news"
-          className={`nav-link ${pathName === "/news" ? "active" : ""}`}
-        >
-          News
         </Link>
       )}
     </nav>

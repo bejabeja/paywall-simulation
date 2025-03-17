@@ -37,7 +37,7 @@ export default function Signin() {
 
         <Input
           label="Email"
-          type="text"
+          type="email"
           name="email"
           placeholder="Email"
           required

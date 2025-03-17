@@ -69,8 +69,11 @@ This project is currently a basic simulation. In the future:
 
 ## Useful information
 
-- **Card Number**: A 16-digit card number is required to create a successful transaction. If the card number is shorter, the transaction will still be created, but it will fail.
+#### **Card Number**: 
+- Valid Example: A valid transaction requires a 16-digit card number. This will create a transaction with `succes` in the database field.
+- Failing Transaction: To simulate a failed transaction, you can use the card number 1111111111111111. This will create a transaction but will introduce `failed` in the database field.
 
+#### **DB-prisma**: 
 - If you want to add some data to the database, you can find a file named `seed.js` where you can add data structures, and then execute:
 
   ```bash

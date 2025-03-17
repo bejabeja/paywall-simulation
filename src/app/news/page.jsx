@@ -1,3 +1,9 @@
+"use client";
+
+import { useAuth } from "@/hooks/useAuth";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import Loading from "../loading";
 import styles from "./page.module.css";
 
 const fakeTravelNews = [
@@ -29,6 +35,23 @@ const fakeTravelNews = [
   },
 ];
 export default function News() {
+  const { user, loading } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!user && !loading) {
+      router.push("/");
+    }
+  }, [user, loading, router]);
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (!user && !user?.isSubscribed) {
+    return null;
+  }
+
   return (
     <section className="container">
       <h2 className="mainTitle">Fake Travel News</h2>

@@ -7,6 +7,7 @@ export default function Input({
   placeholder,
   required,
   className,
+  ...props
 }) {
   return (
     <div className="input-group">
@@ -21,6 +22,7 @@ export default function Input({
         placeholder={placeholder}
         required={required}
         className={`${className || "input"}`}
+        {...props}
       />
     </div>
   );

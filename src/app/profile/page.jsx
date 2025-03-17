@@ -7,14 +7,22 @@ import Loading from "../loading";
 import "./Profile.css";
 
 export default function Profile() {
-  const { user, logout } = useAuth();
+  const { user, logout, loading } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
-    if (!user) {
+    if (!user && !loading) {
       router.push("/");
     }
-  }, [user, router]);
+  }, [user, loading, router]);
+
+  if (loading ) {
+    return <Loading />;
+  }
+
+  if (!user) {
+    return null;
+  }
 
   const handleLogout = () => {
     logout();
@@ -24,10 +32,6 @@ export default function Profile() {
   const handleUpgrade = () => {
     router.push("/");
   };
-
-  if (!user) {
-    return <Loading>Loading...</Loading>;
-  }
 
   return (
     <section className="container">

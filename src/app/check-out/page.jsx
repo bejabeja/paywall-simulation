@@ -5,15 +5,29 @@ import { useAuth } from "@/hooks/useAuth";
 import { useData } from "@/hooks/useData";
 import { processCheckout } from "@/services/processCheckout";
 import { useRouter } from "next/navigation";
-import { toast } from "react-hot-toast";
 import Loading from "../loading";
 
+import { useEffect } from "react";
 import "./Checkout.css";
 
 export default function Checkout() {
   const { selectedPlan } = useData();
-  const { user, login } = useAuth();
+  const { user, login, loading } = useAuth();
   const router = useRouter();
+
+  useEffect(() => {
+    if (!selectedPlan && !loading) {
+      router.push("/");
+    }
+  }, [selectedPlan, loading, router]);
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (!selectedPlan) {
+    return null;
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -43,15 +57,11 @@ export default function Checkout() {
     }
   };
 
-  if (!selectedPlan) {
-    return <Loading>Loading your plan...</Loading>;
-  }
-
   return (
     <section className="container">
       <div className="checkout-container">
         <form onSubmit={handleSubmit} className="checkout-form checkout-column">
-          <h2>Checkout</h2>
+          <h2>Billing data</h2>
 
           <Input
             label="Full Name"
@@ -73,11 +83,12 @@ export default function Checkout() {
 
           <Input
             label="Phone"
-            type="text"
+            type="tel"
             name="phone"
             required
             placeholder="Enter your phone"
             aria-label="Phone Number"
+            pattern="^\+?\d{7,15}$"
           />
 
           <Input
@@ -103,14 +114,16 @@ export default function Checkout() {
             type="text"
             name="card-details-name"
             required
-            placeholder="Enter credit card number"
-            aria-label="Credit Card Number"
+            placeholder="1234 5678 9101 1121"
+            minLength="16"
+            maxLength="19"
           />
           <Input
             type="text"
             name="card-details-date"
             required
-            placeholder="Expiration Date"
+            placeholder="MM/YY"
+            pattern="(0[1-9]|1[0-2])/\d{2}"
             aria-label="Expiration Date"
           />
           <Input
@@ -118,6 +131,8 @@ export default function Checkout() {
             name="card-details-cvv"
             required
             placeholder="CVV"
+            maxLength="4"
+            pattern="\d{3,4}"
             aria-label="CVV"
           />
 
