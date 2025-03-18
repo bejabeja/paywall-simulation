@@ -1,28 +1,13 @@
 "use client";
 
+import { withAuth } from "@/components/withAuth";
 import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-import Loading from "../loading";
 import "./Profile.css";
 
-export default function Profile() {
-  const { user, logout, loading } = useAuth();
+function Profile() {
+  const { user, logout } = useAuth();
   const router = useRouter();
-
-  useEffect(() => {
-    if (!user && !loading) {
-      router.push("/");
-    }
-  }, [user, loading, router]);
-
-  if (loading ) {
-    return <Loading />;
-  }
-
-  if (!user) {
-    return null;
-  }
 
   const handleLogout = () => {
     logout();
@@ -76,3 +61,5 @@ export default function Profile() {
     </section>
   );
 }
+
+export default withAuth(Profile);

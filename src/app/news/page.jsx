@@ -1,9 +1,6 @@
 "use client";
 
-import { useAuth } from "@/hooks/useAuth";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-import Loading from "../loading";
+import { withAuthAndSubscription } from "@/components/withAuth";
 import styles from "./page.module.css";
 
 const fakeTravelNews = [
@@ -34,24 +31,7 @@ const fakeTravelNews = [
       "The most exclusive airline has launched a luxury flight service where passengers will enjoy massages and a five-star spa on board.",
   },
 ];
-export default function News() {
-  const { user, loading } = useAuth();
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!user && !loading) {
-      router.push("/");
-    }
-  }, [user, loading, router]);
-
-  if (loading) {
-    return <Loading />;
-  }
-
-  if (!user && !user?.isSubscribed) {
-    return null;
-  }
-
+function News() {
   return (
     <section className="container">
       <h2 className="mainTitle">Fake Travel News</h2>
@@ -68,3 +48,5 @@ export default function News() {
     </section>
   );
 }
+
+export default withAuthAndSubscription(News);

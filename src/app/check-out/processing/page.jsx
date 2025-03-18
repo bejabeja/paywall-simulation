@@ -1,11 +1,12 @@
 "use client";
 
+import { withAuth } from "@/components/withAuth";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import "../Checkout.css";
 
-export default function ProcessingPayment() {
+function ProcessingPayment() {
   const [paymentComplete, setPaymentComplete] = useState(false);
   const searchParams = useSearchParams();
   const status = searchParams?.get("status");
@@ -51,3 +52,5 @@ export default function ProcessingPayment() {
     </div>
   );
 }
+
+export default withAuth(ProcessingPayment);

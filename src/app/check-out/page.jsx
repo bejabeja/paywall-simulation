@@ -5,25 +5,20 @@ import { useAuth } from "@/hooks/useAuth";
 import { useData } from "@/hooks/useData";
 import { processCheckout } from "@/services/processCheckout";
 import { useRouter } from "next/navigation";
-import Loading from "../loading";
-
+import { withAuth } from "@/components/withAuth";
 import { useEffect } from "react";
 import "./Checkout.css";
 
-export default function Checkout() {
+function Checkout() {
   const { selectedPlan } = useData();
-  const { user, login, loading } = useAuth();
+  const { user, login } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
-    if (!selectedPlan && !loading) {
+    if (!selectedPlan) {
       router.push("/");
     }
-  }, [selectedPlan, loading, router]);
-
-  if (loading) {
-    return <Loading />;
-  }
+  }, [selectedPlan]);
 
   if (!selectedPlan) {
     return null;
@@ -159,3 +154,5 @@ export default function Checkout() {
     </section>
   );
 }
+
+export default withAuth(Checkout);
